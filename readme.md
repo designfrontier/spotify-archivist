@@ -20,27 +20,15 @@ A Node.js script that organizes your Spotify liked songs into yearly playlists. 
 
 ## Initial Setup
 
-1. Create a new directory and initialize it:
+1. Clone the repo
 
-```bash
-mkdir spotify-playlist-organizer
-cd spotify-playlist-organizer
-npm init -y
-```
-
-2. Set up the project to use ES modules:
-
-```bash
-npm pkg set type="module"
-```
-
-3. Install dependencies:
+2. Install dependencies:
 
 ```bash
 npm install spotify-web-api-node dotenv yargs express open
 ```
 
-4. Create a Spotify Developer Application:
+3. Create a Spotify Developer Application:
 
    - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
    - Click "Create App"
@@ -48,7 +36,7 @@ npm install spotify-web-api-node dotenv yargs express open
    - Set the redirect URI to `http://localhost:8888/callback`
    - Note down the Client ID and Client Secret
 
-5. Create a `.env` file in the project root:
+4. Create a `.env` file in the project root:
 
 ```
 SPOTIFY_CLIENT_ID=your_client_id
