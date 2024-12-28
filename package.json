@@ -3,6 +3,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "open": "^10.1.0",
+    "openai": "^4.77.0",
     "spotify-web-api-node": "^5.0.2",
     "yargs": "^17.7.2"
   },

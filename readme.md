@@ -17,6 +17,7 @@ A Node.js script that organizes your Spotify liked songs into yearly playlists. 
 - Node.js (v14 or higher)
 - npm
 - Spotify Developer Account
+- openai platform account
 
 ## Initial Setup
 
@@ -25,7 +26,7 @@ A Node.js script that organizes your Spotify liked songs into yearly playlists. 
 2. Install dependencies:
 
 ```bash
-npm install spotify-web-api-node dotenv yargs express open
+npm install
 ```
 
 3. Create a Spotify Developer Application:
@@ -36,12 +37,10 @@ npm install spotify-web-api-node dotenv yargs express open
    - Set the redirect URI to `http://localhost:8888/callback`
    - Note down the Client ID and Client Secret
 
-4. Create a `.env` file in the project root:
+4. Create a `.env` file in the project root by changing the name of
+   `.env.template` to `.env`
 
-```
-SPOTIFY_CLIENT_ID=your_client_id
-SPOTIFY_CLIENT_SECRET=your_client_secret
-```
+5. Add the values for Client ID and Client Secret to the `.env` file
 
 ## Getting Your Spotify Access Tokens
 
@@ -68,6 +67,15 @@ SPOTIFY_CLIENT_SECRET=your_client_secret
 SPOTIFY_REDIRECT_URI=http://localhost:8888/callback
 SPOTIFY_REFRESH_TOKEN=your_refresh_token
 ```
+
+## Add a chatgpt APIi token
+
+Go here https://platform.openai.com/settings/organization/api-keys and create an
+API key. Add it to the `.env` file.
+
+This is needed if you want to run analysis as described below. It is used to
+categorize and rate the positivity of your songs. See the `.env.template` for
+where ths goes.
 
 ## Usage
 
@@ -122,6 +130,40 @@ To see all available options:
 ```bash
 node script.js --help
 ```
+
+### Analyze Lyrics and Sentiment
+
+To analyze your liked songs:
+
+```bash
+node script.js --analyze
+```
+
+You can combine this with year options:
+
+```bash
+# Analyze a specific year
+node script.js --analyze --year 2023
+
+# Analyze a range of years
+node script.js --analyze --start-year 2020 --end-year 2023
+```
+
+The analysis will:
+
+1. Create an `analysis` directory in your project
+2. Generate JSON files for each year (e.g., `analysis_2023.json`)
+3. Show sentiment analysis summaries in the console
+4. Store detailed analysis in the JSON files
+
+The analysis includes:
+
+- Overall sentiment scores for the year
+- Monthly breakdowns of sentiment
+- Categorization of sentiment
+- Individual song sentiment scores
+- Popularity average
+- Popularity score by song (spotify's score on a scale of 0-100)
 
 ## Progress and Error Handling
 
